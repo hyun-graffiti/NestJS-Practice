@@ -23,22 +23,24 @@ export class MoviesController {
 
   @Get(':id')
   getOne(@Param('id') movieId: number): Movie {
-    console.log(typeof movieId)
     return this.moviesService.getOne(movieId)
   }
 
   @Post()
-  create(@Body() movieData: CreateMovieDto) {
-    return this.moviesService.create(movieData)
+  create(@Body() movieData: CreateMovieDto): void {
+    this.moviesService.create(movieData)
   }
 
   @Delete(':id')
-  remove(@Param('id') movieId: number) {
+  remove(@Param('id') movieId: number): void {
     return this.moviesService.deleteOne(movieId)
   }
 
   @Patch(':id')
-  patch(@Param('id') movieId: number, @Body() updateData: UpdateMovieDto) {
-    return this.moviesService.update(movieId, updateData)
+  patch(
+    @Param('id') movieId: number,
+    @Body() updateData: UpdateMovieDto,
+  ): void {
+    this.moviesService.update(movieId, updateData)
   }
 }
